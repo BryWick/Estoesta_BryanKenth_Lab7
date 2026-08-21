@@ -14,22 +14,38 @@ class MyApp extends StatelessWidget {
 class PlaylistScreen extends StatelessWidget {
   const PlaylistScreen({super.key});
 
+  final List<String> songs = const [
+    ' Peace of Mind by Ben&Ben',
+    'The Prayer (PENTATONIX cover)',
+    'Soft spot by keshi',
+    'Kalapastangan by fitterkarma',
+    'Golden by Huntrix',
+
+    //u can add or change songs u want
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('My Playlist')),
-      body: Center(
-        child: ElevatedButton(
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const NowPlayingScreen(songTitle: 'Sunset Drive'),
-              ), // MaterialPageRoute
-            );
-          },
-          child: const Text('Play First Song'),
-        ),
+      body: ListView.builder(
+        itemCount: songs.length,
+        itemBuilder: (context, index) {
+          return ListTile(
+            leading: const Icon(Icons.music_note),
+            title: Text(songs[index]),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) =>
+                      NowPlayingScreen(songTitle: songs[index]),
+                ),
+              );
+              // ListTile
+            },
+          );
+        },
       ),
     );
   }
