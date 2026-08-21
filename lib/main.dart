@@ -24,7 +24,7 @@ class PlaylistScreen extends StatelessWidget {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => const NowPlayingScreen(),
+                builder: (context) => const NowPlayingScreen(songTitle: 'Sunset Drive'),
               ), // MaterialPageRoute
             );
           },
@@ -36,21 +36,14 @@ class PlaylistScreen extends StatelessWidget {
 }
 
 class NowPlayingScreen extends StatelessWidget {
-  const NowPlayingScreen({super.key});
+  final String songTitle;
+  const NowPlayingScreen({super.key, required this.songTitle});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Now Playing')),
-      body: Center(
-        child: ElevatedButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-
-          child: const Text('Stop and Go Back'),
-        ),
-      ),
-    ); // Scaffold
+      body: Center(child: Text('Playing: $songTitle')), // Center
+    ); // Scaffold  }
   }
 }
